@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-2xl font-bold text-gray-800 mb-6">
+    📊 Dashboard – {{ user.username }}
+</h1>
+
+<div class="bg-white rounded-lg shadow p-4 mb-6">
+    <div class="flex justify-between mb-1">
+        <span class="text-gray-600">Gesamtfortschritt</span>
+        <span class="font-bold text-blue-600">{{ completed_phases }}/7 Phasen</span>
+    </div>
+    <div class="w-full bg-gray-200 rounded-full h-4">
+        <div class="bg-blue-600 h-4 rounded-full"
+             style="width: {{ (completed_phases / 7 * 100)|int }}%"></div>
+    </div>
+</div>
+
+<div class="space-y-3">
+{% for phase in phases %}
+<div class="bg-white rounded-lg shadow p-4 flex items-center justify-between">
+    <div>
+        <span class="font-semibold text-gray-800">{{ phase.phase }}</span>
+        {% if phase.step %}
+        <span class="text-sm text-gray-500 ml-2">Schritt {{ phase.step }}</span>
+        {% endif %}
+    </div>
+    <div class="flex items-center space-x-3">
+        <span class="text-xl">
+            {% if phase.completed %}✅{% else %}⏳{% endif %}
+        </span>
+        <a href="/toggle/{{ phase.id }}/{{ 'false' if phase.completed else 'true' }}"
+           class="text-sm px-3 py-1 rounded
+                  {% if phase.completed %}bg-red-100 text-red-600
+                  {% else %}bg-green-100 text-green-600{% endif %}
+                  hover:opacity-80">
+            {% if phase.completed %}Rückgängig{% else %}Abschließen{% endif %}
+        </a>
+    </div>
+</div>
+{% else %}
+<div class="bg-white rounded-lg shadow p-8 text-center text-gray-500">
+    Noch kein Fortschritt vorhanden.
+</div>
+{% endfor %}
+</div>
+
+{% if completed_phases >= 7 %}
+<div class="mt-6 text-center">
+    <a href="/certificate-page/{{ user.id }}"
+       class="bg-green-500 text-white px-8 py-3 rounded-lg text-lg hover:bg-green-600">
+        🏆 Zertifikat abrufen!
+    </a>
+</div>
+{% endif %}
+{% endblock %}
