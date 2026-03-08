@@ -1,17 +1,17 @@
-# Hey, ich bin Daniel! 👋
+# ☁️ Learn to Cloud – Progress Tracker
 
-## 🚀 Über mich
-- ☁️ Ich lerne Cloud & DevOps mit learntocloud.guide
-- 🐍 Backend-APIs mit FastAPI & Python
-- 🐳 Docker & PostgreSQL
-- 🔐 GitHub OAuth & Authentifizierung
+Ein Web-App zum Verfolgen des Fortschritts durch die 7 Phasen von learntocloud.guide
 
-## 🎯 Ziele 2026
-- [ ] Alle 7 Phasen von Learn to Cloud abschließen
-- [ ] AWS Cloud Practitioner Zertifizierung
-- [ ] Erstes Projekt live deployen
-- [ ] GitHub Actions CI/CD Pipeline
+## Tech Stack
+- Backend: FastAPI + Python 3.13
+- Datenbank: PostgreSQL 15 (Docker)
+- Frontend: Jinja2 + Tailwind CSS
+- Auth: GitHub OAuth
+- Tests: pytest + httpx
 
+## Schnellstart
+cd api && source .venv/bin/activate
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
-## 📌 Mein Projekt
-🔗 [Learn to Cloud Progress Tracker](https://github.com/thePinboard/DevOP)
+## Autor
+Daniel Kiebler - https://github.com/thePinboard
